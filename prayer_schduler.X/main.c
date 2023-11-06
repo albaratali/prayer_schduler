@@ -6,16 +6,27 @@
  */
 
 
-#include <xc.h>
+#include "main.h"
 
 #pragma config WDTE =OFF // watchdog timer disabled
 
 static void init_config(void) {
-    // write your initialization code here
+    // initialization of CLCD Module
+    init_clcd();
+    
+    //Initialization of MKP module
+    init_matrix_keypad();
+    
+    init_timer2();
+    
+    PEIE=1;
+    GIE=1;
+    
 }
 
 void main(void) {
     init_config(); // calling initializing function
+    
     while (1) {
         // write application code here
     }
