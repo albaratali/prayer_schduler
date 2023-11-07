@@ -13,5 +13,9 @@
 #include "matrix_keypad.h"
 #include "timers.h"
 
+#define TURN_ON            0x01
+
+void turn_on(void);
+
 #endif	/* MAIN_H */
 

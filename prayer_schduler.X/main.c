@@ -26,9 +26,39 @@ static void init_config(void) {
 
 void main(void) {
     init_config(); // calling initializing function
-    
+    unsigned char key;
+    int operation_flag= TURN_ON;
     while (1) {
         // write application code here
+        key=read_matrix_keypad(STATE);
+        switch(operation_flag)
+        {
+            case TURN_ON:
+                turn_on();
+                break;
+        }
+                
+                    
     }
 
+}
+
+void turn_on(void)
+{
+    unsigned char i;
+    
+    for(i=0;i<16;i++)
+    {
+        clcd_putch(BAR,LINE1(i));
+        __delay_ms(100);
+    }
+    
+    clcd_print("  TURN ON   ",LINE2(0));
+    
+    for(i=0;i<16;i++)
+    {
+        clcd_putch(BAR,LINE4(i));
+        __delay_ms(100);
+    }
+    __delay_ms(100);
 }

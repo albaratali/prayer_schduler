@@ -14,5 +14,5 @@ void init_timer2(void)
     TMR2IE = 1;
        
     /* Switching OFF the Timer2 */
-    TMR2ON = OFF;
+    TMR2ON = 0;
 }
