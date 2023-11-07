@@ -1932,7 +1932,11 @@ void init_timer2(void);
 
 
 
+
+
 void turn_on(void);
+void clear_screen(void);
+void set_time(void);
 # 9 "main.c" 2
 
 
@@ -1943,26 +1947,25 @@ static void init_config(void) {
     init_clcd();
 
 
-    init_matrix_keypad();
-
-    init_timer2();
-
-    PEIE=1;
-    GIE=1;
 
 }
 
 void main(void) {
     init_config();
-    unsigned char key;
+
     int operation_flag= 0x01;
     while (1) {
 
-        key=read_matrix_keypad(1);
+
         switch(operation_flag)
         {
             case 0x01:
                 turn_on();
+                clear_screen();
+                operation_flag= 0x03;
+                break;
+            case 0x02:
+                set_time();
                 break;
         }
 
@@ -1971,6 +1974,18 @@ void main(void) {
 
 }
 
+void set_time(void)
+{
+    clcd_print(" Time- ",(0x80 + 0));
+}
+
+void clear_screen(void)
+{
+    clcd_write(0x01, 0);
+    _delay((unsigned long)((500)*(20000000/4000000.0)));
+}
+
+
 void turn_on(void)
 {
     unsigned char i;
@@ -1978,15 +1993,15 @@ void turn_on(void)
     for(i=0;i<16;i++)
     {
         clcd_putch(0xFF,(0x80 + i));
-        _delay((unsigned long)((100)*(20000000/4000.0)));
+        _delay((unsigned long)((50)*(20000000/4000.0)));
     }
 
-    clcd_print("  TURN ON   ",(0xC0 + 0));
+    clcd_print("     TURN ON   ",(0xC0 + 0));
 
     for(i=0;i<16;i++)
     {
         clcd_putch(0xFF,(0xD0 + i));
-        _delay((unsigned long)((100)*(20000000/4000.0)));
+        _delay((unsigned long)((50)*(20000000/4000.0)));
     }
     _delay((unsigned long)((100)*(20000000/4000.0)));
 }

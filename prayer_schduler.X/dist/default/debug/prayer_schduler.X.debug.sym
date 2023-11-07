@@ -159,8 +159,8 @@ text6 D10 D25 CODE D10 0
 text3 CFE D0F CODE CFE 0
 text5 CF2 CFD CODE CF2 0
 %locals
-dist/default/production\prayer_schduler.X.production.o
-C:\Users\faizan\AppData\Local\Temp\xcAs9vk.\driver_tmp_1.s
+dist/default/debug\prayer_schduler.X.debug.o
+C:\Users\faizan\AppData\Local\Temp\xcAs3eo.\driver_tmp_1.s
 535 7FC 0 CODE 0
 538 7FC 0 CODE 0
 544 7FC 0 CODE 0

@@ -13,9 +13,13 @@
 #include "matrix_keypad.h"
 #include "timers.h"
 
-#define TURN_ON            0x01
+#define TURN_ON             0x01
+#define SET_TIME            0x02
+#define TIME_SCREEN         0x03
 
 void turn_on(void);
+void clear_screen(void);
+void set_time(void);
 
 #endif	/* MAIN_H */
 

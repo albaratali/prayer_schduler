@@ -15,26 +15,25 @@ static void init_config(void) {
     init_clcd();
     
     //Initialization of MKP module
-    init_matrix_keypad();
-    
-    init_timer2();
-    
-    PEIE=1;
-    GIE=1;
-    
+ 
 }
 
 void main(void) {
     init_config(); // calling initializing function
-    unsigned char key;
+   
     int operation_flag= TURN_ON;
     while (1) {
         // write application code here
-        key=read_matrix_keypad(STATE);
+       
         switch(operation_flag)
         {
             case TURN_ON:
                 turn_on();
+                clear_screen();
+                operation_flag= SET_TIME;
+                break;
+            case SET_TIME:
+                set_time();
                 break;
         }
                 
@@ -43,6 +42,18 @@ void main(void) {
 
 }
 
+void set_time(void)
+{
+    clcd_print(" Time- ",LINE1(0));
+}
+
+void clear_screen(void)
+{
+    clcd_write(CLEAR_DISP_SCREEN, INST_MODE);
+    __delay_us(500);
+}
+
+
 void turn_on(void)
 {
     unsigned char i;
@@ -50,15 +61,15 @@ void turn_on(void)
     for(i=0;i<16;i++)
     {
         clcd_putch(BAR,LINE1(i));
-        __delay_ms(100);
+        __delay_ms(50);
     }
     
-    clcd_print("  TURN ON   ",LINE2(0));
+    clcd_print("     TURN ON   ",LINE2(0));
     
     for(i=0;i<16;i++)
     {
         clcd_putch(BAR,LINE4(i));
-        __delay_ms(100);
+        __delay_ms(50);
     }
     __delay_ms(100);
 }
