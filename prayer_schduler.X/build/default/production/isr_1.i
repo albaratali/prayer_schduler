@@ -1,4 +1,4 @@
-# 1 "clcd.c"
+# 1 "isr_1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "clcd.c" 2
+# 1 "isr_1.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1895,8 +1895,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 2 3
-# 1 "clcd.c" 2
+# 1 "isr_1.c" 2
 
+# 1 "./main.h" 1
+# 12 "./main.h"
 # 1 "./clcd.h" 1
 # 36 "./clcd.h"
 static void init_display_controller(void);
@@ -1905,76 +1907,54 @@ void init_clcd(void);
 void clcd_write(unsigned char byte, unsigned char mode);
 void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
-# 2 "clcd.c" 2
+# 12 "./main.h" 2
+
+# 1 "./matrix_keypad_1.h" 1
+# 31 "./matrix_keypad_1.h"
+unsigned char read_matrix_keypad(unsigned char mode);
+void init_matrix_keypad(void);
+# 13 "./main.h" 2
+
+# 1 "./timers_1.h" 1
+# 11 "./timers_1.h"
+void init_timer0(void);
+void init_timer2(void);
+# 14 "./main.h" 2
+# 23 "./main.h"
+void turn_on(void);
+void clear_screen(void);
+void set_time(unsigned char key,int reset_flag);
+void clock_screen (void);
+# 2 "isr_1.c" 2
 
 
-void init_clcd(void)
+extern unsigned char sec,min,hour;
+void __attribute__((picinterrupt(("")))) isr(void)
 {
+    static unsigned int count = 0;
 
-    TRISD = 0x00;
-
-
-    TRISE2 = 0;
-    TRISE1 = 0;
-
-    init_display_controller();
-}
-
-static void init_display_controller(void)
-{
-
-    _delay((unsigned long)((30)*(20000000/4000.0)));
-
-
-    clcd_write(0x33, 0);
-    _delay((unsigned long)((4100)*(20000000/4000000.0)));
-    clcd_write(0x33, 0);
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    clcd_write(0x33, 0);
-    _delay((unsigned long)((1)*(20000000/4000000.0)));
-
-    clcd_write(0x02, 0);
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    clcd_write(0x28, 0);
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    clcd_write(0x01, 0);
-    _delay((unsigned long)((500)*(20000000/4000000.0)));
-    clcd_write(0x0C, 0);
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-}
-
-
-
-void clcd_putch(const char data, unsigned char addr)
-{
-    clcd_write(addr, 0);
-    clcd_write(data, 1);
-}
-
-void clcd_print(const char *str, unsigned char addr)
-{
-    clcd_write(addr, 0);
-
-    while (*str != '\0')
+    if (TMR2IF == 1)
     {
-        clcd_write(*str, 1);
-        str++;
+        if (++count == 1250)
+        {
+            count = 0;
+            sec++;
+
+            if (sec==60)
+            {
+                min++;
+                sec=0;
+
+            }
+            if(min==60)
+            {
+                hour++;
+                min=0;
+            }
+
+
+        }
+
+        TMR2IF = 0;
     }
-}
-
-void clcd_write(unsigned char byte, unsigned char mode)
-{
-    RE2 = (__bit)mode;
-
-    PORTD = byte & 0xF0;
-    RE1 = 1;
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    RE1 = 0;
-
-    PORTD = (unsigned char)((byte & 0x0F) << 4);
-    RE1 = 1;
-    _delay((unsigned long)((100)*(20000000/4000000.0)));
-    RE1 = 0;
-
-    _delay((unsigned long)((4100)*(20000000/4000000.0)));
 }

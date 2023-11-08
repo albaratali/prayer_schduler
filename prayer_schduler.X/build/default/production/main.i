@@ -1917,45 +1917,53 @@ void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
 # 12 "./main.h" 2
 
-# 1 "./matrix_keypad.h" 1
-# 31 "./matrix_keypad.h"
+# 1 "./matrix_keypad_1.h" 1
+# 31 "./matrix_keypad_1.h"
 unsigned char read_matrix_keypad(unsigned char mode);
 void init_matrix_keypad(void);
 # 13 "./main.h" 2
 
-# 1 "./timers.h" 1
-# 11 "./timers.h"
+# 1 "./timers_1.h" 1
+# 11 "./timers_1.h"
 void init_timer0(void);
 void init_timer2(void);
 # 14 "./main.h" 2
-
-
-
-
-
-
+# 23 "./main.h"
 void turn_on(void);
 void clear_screen(void);
-void set_time(void);
+void set_time(unsigned char key,int reset_flag);
+void clock_screen (void);
 # 9 "main.c" 2
 
 
 #pragma config WDTE =OFF
 
+unsigned char sec=0,min=0,hour=0;
+int operation_flag= 0x01;
+
 static void init_config(void) {
 
     init_clcd();
 
+    init_matrix_keypad();
 
+
+    init_timer2();
+
+    PEIE=1;
+    GIE=1;
 
 }
 
 void main(void) {
     init_config();
+    unsigned char key;
+    static int reset_flag=0x05;
 
-    int operation_flag= 0x01;
+
     while (1) {
 
+        key=read_matrix_keypad(1);
 
         switch(operation_flag)
         {
@@ -1965,7 +1973,12 @@ void main(void) {
                 operation_flag= 0x02;
                 break;
             case 0x02:
-                set_time();
+                set_time(key,reset_flag);
+                reset_flag=0x06;
+                break;
+            case 0x04:
+
+                clock_screen();
                 break;
         }
 
@@ -1974,9 +1987,121 @@ void main(void) {
 
 }
 
-void set_time(void)
+void clock_screen (void)
 {
-    clcd_print(" Time- ",(0x80 + 0));
+    clcd_print("TIME:",(0xC0 + 0));
+
+    clcd_putch(hour/10 + '0',(0xC0 + 6));
+    clcd_putch(hour%10 + '0',(0xC0 + 7));
+    clcd_putch(':',(0xC0 + 8));
+
+    clcd_putch(min/10 + '0',(0xC0 + 9));
+    clcd_putch(min%10 + '0',(0xC0 + 10));
+    clcd_putch(':',(0xC0 + 11));
+
+    clcd_putch(sec/10 + '0',(0xC0 + 12));
+    clcd_putch(sec%10 + '0',(0xC0 + 13));
+
+}
+void set_time(unsigned char key,int reset_flag)
+{
+    static unsigned char key_count,blink_pos,blink,wait;
+
+    if(reset_flag==0x05)
+    {
+    key_count=0;
+    sec=0;
+    min=0;
+    hour=0;
+    blink_pos=0;
+    blink=0;
+    key=0xFF;
+    clcd_print("SET TIME(H:M:S)",(0x80 + 0));
+    clcd_print("TIME:",(0xC0 + 0));
+    clcd_print("*:CLEAR  #:ENTER",(0xD0 + 0));
+    }
+
+    if((key!= '*') && (key != '#') && (key != 0xFF))
+    {
+        key_count++;
+        if (key_count <= 2)
+        {
+            sec = sec*10 + key;
+            blink_pos = 0;
+        }
+        else if ((key_count>2) && (key_count<=4))
+        {
+            min=min*10 +key;
+            blink_pos=1;
+        }
+        else if ((key_count>4) && (key_count<=6))
+        {
+            hour=hour*10 +key;
+            blink_pos=2;
+        }
+
+    }
+    else if (key=='*')
+    {
+        if(blink_pos==0)
+        {
+            sec=0;
+            key_count=0;
+        }
+        else if (blink_pos==1)
+        {
+            min=0;
+            key_count=2;
+        }
+        else if (blink_pos==2)
+        {
+            hour=0;
+            key_count=4;
+        }
+    }
+    else if (key=='#')
+    {
+        clear_screen();
+        operation_flag = 0x04;
+        TMR2ON =1;
+    }
+
+    if(wait++ ==15)
+    {
+        wait=0;
+        blink =! blink;
+
+
+        clcd_putch(hour/10 + '0',(0xC0 + 6));
+        clcd_putch(hour%10 + '0',(0xC0 + 7));
+        clcd_putch(':',(0xC0 + 8));
+
+
+        clcd_putch(min/10 + '0',(0xC0 + 9));
+        clcd_putch(min%10 + '0',(0xC0 + 10));
+        clcd_putch(':',(0xC0 + 11));
+
+        clcd_putch(sec/10 + '0',(0xC0 + 12));
+        clcd_putch(sec%10 + '0',(0xC0 + 13));
+
+
+
+
+    }
+
+    if(blink)
+    {
+        switch(blink_pos)
+        {
+            case 2:
+                clcd_print("  ",(0xC0 + 6));
+            case 1:
+                clcd_print("  ",(0xC0 + 9));
+            case 0:
+                clcd_print("  ",(0xC0 + 12));
+        }
+    }
+
 }
 
 void clear_screen(void)

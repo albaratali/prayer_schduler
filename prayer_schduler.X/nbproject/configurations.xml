@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>clcd.h</itemPath>
       <itemPath>main.h</itemPath>
+      <itemPath>matrix_keypad_1.h</itemPath>
+      <itemPath>timers_1.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,6 +18,9 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>clcd.c</itemPath>
+      <itemPath>matrix_keypad_1.c</itemPath>
+      <itemPath>timers_1.c</itemPath>
+      <itemPath>isr_1.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

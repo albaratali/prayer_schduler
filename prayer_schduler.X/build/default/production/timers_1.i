@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "timers_1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,15 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-
-
-
-
-
-
-
-
+# 1 "timers_1.c" 2
 # 1 "./main.h" 1
 # 11 "./main.h"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 1 3
@@ -1917,91 +1909,38 @@ void clcd_putch(const char data, unsigned char addr);
 void clcd_print(const char *str, unsigned char addr);
 # 12 "./main.h" 2
 
-# 1 "./matrix_keypad.h" 1
-# 31 "./matrix_keypad.h"
+# 1 "./matrix_keypad_1.h" 1
+# 31 "./matrix_keypad_1.h"
 unsigned char read_matrix_keypad(unsigned char mode);
 void init_matrix_keypad(void);
 # 13 "./main.h" 2
 
-# 1 "./timers.h" 1
-# 11 "./timers.h"
+# 1 "./timers_1.h" 1
+# 11 "./timers_1.h"
 void init_timer0(void);
 void init_timer2(void);
 # 14 "./main.h" 2
-
-
-
-
-
-
+# 23 "./main.h"
 void turn_on(void);
 void clear_screen(void);
-void set_time(void);
-# 9 "main.c" 2
-
-
-#pragma config WDTE =OFF
-
-static void init_config(void) {
-
-    init_clcd();
+void set_time(unsigned char key,int reset_flag);
+void clock_screen (void);
+# 1 "timers_1.c" 2
 
 
 
-}
-
-void main(void) {
-    init_config();
-
-    int operation_flag= 0x01;
-    while (1) {
-
-
-        switch(operation_flag)
-        {
-            case 0x01:
-                turn_on();
-                clear_screen();
-                operation_flag= 0x03;
-                break;
-            case 0x02:
-                set_time();
-                break;
-        }
-
-
-    }
-
-}
-
-void set_time(void)
+void init_timer2(void)
 {
-    clcd_print(" Time- ",(0x80 + 0));
-}
 
-void clear_screen(void)
-{
-    clcd_write(0x01, 0);
-    _delay((unsigned long)((500)*(20000000/4000000.0)));
-}
+    T2CKPS0 = 1;
+    T2CKPS1 = 1;
 
 
-void turn_on(void)
-{
-    unsigned char i;
+    PR2 = 250;
 
-    for(i=0;i<16;i++)
-    {
-        clcd_putch(0xFF,(0x80 + i));
-        _delay((unsigned long)((50)*(20000000/4000.0)));
-    }
 
-    clcd_print("     TURN ON   ",(0xC0 + 0));
+    TMR2IE = 1;
 
-    for(i=0;i<16;i++)
-    {
-        clcd_putch(0xFF,(0xD0 + i));
-        _delay((unsigned long)((50)*(20000000/4000.0)));
-    }
-    _delay((unsigned long)((100)*(20000000/4000.0)));
+
+    TMR2ON = 0;
 }

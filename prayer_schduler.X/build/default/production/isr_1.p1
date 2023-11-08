@@ -1,32 +1,14 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"1499 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1499: extern volatile unsigned char TRISD __attribute__((address(0x088)));
-[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"3017
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 3017: extern volatile __bit TRISE2 __attribute__((address(0x44A)));
-[v _TRISE2 `Vb ~T0 @X0 0 e@1098 ]
-"3014
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 3014: extern volatile __bit TRISE1 __attribute__((address(0x449)));
-[v _TRISE1 `Vb ~T0 @X0 0 e@1097 ]
-"36 ./clcd.h
-[; ;./clcd.h: 36: static void init_display_controller(void);
-[v _init_display_controller `(v ~T0 @X0 0 sf ]
-[v F164 `(v ~T0 @X0 1 tf1`ul ]
-"12 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\builtins.h
-[v __delay `JF164 ~T0 @X0 0 e ]
-[p i __delay ]
-"39 ./clcd.h
-[; ;./clcd.h: 39: void clcd_write(unsigned char byte, unsigned char mode);
-[v _clcd_write `(v ~T0 @X0 0 ef2`uc`uc ]
-"2783 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 2783: extern volatile __bit RE2 __attribute__((address(0x4A)));
-[v _RE2 `Vb ~T0 @X0 0 e@74 ]
-"340
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 340: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
-"2780
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 2780: extern volatile __bit RE1 __attribute__((address(0x49)));
-[v _RE1 `Vb ~T0 @X0 0 e@73 ]
+[t ~ __interrupt . k ]
+[t T1 __interrupt ]
+"2903 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 2903: extern volatile __bit TMR2IF __attribute__((address(0x61)));
+[v _TMR2IF `Vb ~T0 @X0 0 e@97 ]
+"4 isr_1.c
+[; ;isr_1.c: 4: extern unsigned char sec,min,hour;
+[v _sec `uc ~T0 @X0 0 e ]
+[v _min `uc ~T0 @X0 0 e ]
+[v _hour `uc ~T0 @X0 0 e ]
 "54 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -207,198 +189,83 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2363
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"4 clcd.c
-[; ;clcd.c: 4: void init_clcd(void)
-[v _init_clcd `(v ~T0 @X0 1 ef ]
-"5
-[; ;clcd.c: 5: {
+[v $root$_isr `(v ~T0 @X0 0 e ]
+"5 isr_1.c
+[; ;isr_1.c: 5: void __attribute__((picinterrupt(("")))) isr(void)
+[v _isr `(v ~T1 @X0 1 ef ]
+"6
+[; ;isr_1.c: 6: {
 {
-[e :U _init_clcd ]
+[e :U _isr ]
 [f ]
 "7
-[; ;clcd.c: 7:     TRISD = 0x00;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;isr_1.c: 7:     static unsigned int count = 0;
+[v F1032 `ui ~T0 @X0 1 s count ]
+[i F1032
+-> -> 0 `i `ui
+]
+"9
+[; ;isr_1.c: 9:     if (TMR2IF == 1)
+[e $ ! == -> _TMR2IF `i -> 1 `i 100  ]
 "10
-[; ;clcd.c: 10:     TRISE2 = 0;
-[e = _TRISE2 -> -> 0 `i `b ]
+[; ;isr_1.c: 10:     {
+{
 "11
-[; ;clcd.c: 11:     TRISE1 = 0;
-[e = _TRISE1 -> -> 0 `i `b ]
+[; ;isr_1.c: 11:         if (++count == 1250)
+[e $ ! == =+ F1032 -> -> 1 `i `ui -> -> 1250 `i `ui 101  ]
+"12
+[; ;isr_1.c: 12:         {
+{
 "13
-[; ;clcd.c: 13:     init_display_controller();
-[e ( _init_display_controller ..  ]
+[; ;isr_1.c: 13:             count = 0;
+[e = F1032 -> -> 0 `i `ui ]
 "14
-[; ;clcd.c: 14: }
-[e :UE 99 ]
-}
+[; ;isr_1.c: 14:             sec++;
+[e ++ _sec -> -> 1 `i `uc ]
 "16
-[; ;clcd.c: 16: static void init_display_controller(void)
-[v _init_display_controller `(v ~T0 @X0 1 sf ]
+[; ;isr_1.c: 16:             if (sec==60)
+[e $ ! == -> _sec `i -> 60 `i 102  ]
 "17
-[; ;clcd.c: 17: {
+[; ;isr_1.c: 17:             {
 {
-[e :U _init_display_controller ]
-[f ]
+"18
+[; ;isr_1.c: 18:                 min++;
+[e ++ _min -> -> 1 `i `uc ]
 "19
-[; ;clcd.c: 19:     _delay((unsigned long)((30)*(20000000/4000.0)));
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;isr_1.c: 19:                 sec=0;
+[e = _sec -> -> 0 `i `uc ]
+"21
+[; ;isr_1.c: 21:             }
+}
+[e :U 102 ]
 "22
-[; ;clcd.c: 22:     clcd_write(0x33, 0);
-[e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
+[; ;isr_1.c: 22:             if(min==60)
+[e $ ! == -> _min `i -> 60 `i 103  ]
 "23
-[; ;clcd.c: 23:     _delay((unsigned long)((4100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 4100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[; ;isr_1.c: 23:             {
+{
 "24
-[; ;clcd.c: 24:     clcd_write(0x33, 0);
-[e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
+[; ;isr_1.c: 24:                 hour++;
+[e ++ _hour -> -> 1 `i `uc ]
 "25
-[; ;clcd.c: 25:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[; ;isr_1.c: 25:                 min=0;
+[e = _min -> -> 0 `i `uc ]
 "26
-[; ;clcd.c: 26:     clcd_write(0x33, 0);
-[e ( _clcd_write (2 , -> -> 51 `i `uc -> -> 0 `i `uc ]
-"27
-[; ;clcd.c: 27:     _delay((unsigned long)((1)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"29
-[; ;clcd.c: 29:     clcd_write(0x02, 0);
-[e ( _clcd_write (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-"30
-[; ;clcd.c: 30:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"31
-[; ;clcd.c: 31:     clcd_write(0x28, 0);
-[e ( _clcd_write (2 , -> -> 40 `i `uc -> -> 0 `i `uc ]
-"32
-[; ;clcd.c: 32:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"33
-[; ;clcd.c: 33:     clcd_write(0x01, 0);
-[e ( _clcd_write (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"34
-[; ;clcd.c: 34:     _delay((unsigned long)((500)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"35
-[; ;clcd.c: 35:     clcd_write(0x0C, 0);
-[e ( _clcd_write (2 , -> -> 12 `i `uc -> -> 0 `i `uc ]
-"36
-[; ;clcd.c: 36:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"37
-[; ;clcd.c: 37: }
-[e :UE 100 ]
-}
-"41
-[; ;clcd.c: 41: void clcd_putch(const char data, unsigned char addr)
-[v _clcd_putch `(v ~T0 @X0 1 ef2`Cuc`uc ]
-"42
-[; ;clcd.c: 42: {
-{
-[e :U _clcd_putch ]
-"41
-[; ;clcd.c: 41: void clcd_putch(const char data, unsigned char addr)
-[v _data `Cuc ~T0 @X0 1 r1 ]
-[v _addr `uc ~T0 @X0 1 r2 ]
-"42
-[; ;clcd.c: 42: {
-[f ]
-"43
-[; ;clcd.c: 43:     clcd_write(addr, 0);
-[e ( _clcd_write (2 , _addr -> -> 0 `i `uc ]
-"44
-[; ;clcd.c: 44:     clcd_write(data, 1);
-[e ( _clcd_write (2 , -> _data `uc -> -> 1 `i `uc ]
-"45
-[; ;clcd.c: 45: }
-[e :UE 101 ]
-}
-"47
-[; ;clcd.c: 47: void clcd_print(const char *str, unsigned char addr)
-[v _clcd_print `(v ~T0 @X0 1 ef2`*Cuc`uc ]
-"48
-[; ;clcd.c: 48: {
-{
-[e :U _clcd_print ]
-"47
-[; ;clcd.c: 47: void clcd_print(const char *str, unsigned char addr)
-[v _str `*Cuc ~T0 @X0 1 r1 ]
-[v _addr `uc ~T0 @X0 1 r2 ]
-"48
-[; ;clcd.c: 48: {
-[f ]
-"49
-[; ;clcd.c: 49:     clcd_write(addr, 0);
-[e ( _clcd_write (2 , _addr -> -> 0 `i `uc ]
-"51
-[; ;clcd.c: 51:     while (*str != '\0')
-[e $U 103  ]
-[e :U 104 ]
-"52
-[; ;clcd.c: 52:     {
-{
-"53
-[; ;clcd.c: 53:         clcd_write(*str, 1);
-[e ( _clcd_write (2 , -> *U _str `uc -> -> 1 `i `uc ]
-"54
-[; ;clcd.c: 54:         str++;
-[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"55
-[; ;clcd.c: 55:     }
+[; ;isr_1.c: 26:             }
 }
 [e :U 103 ]
-"51
-[; ;clcd.c: 51:     while (*str != '\0')
-[e $ != -> *U _str `ui -> 0 `ui 104  ]
-[e :U 105 ]
-"56
-[; ;clcd.c: 56: }
-[e :UE 102 ]
+"29
+[; ;isr_1.c: 29:         }
 }
-"58
-[; ;clcd.c: 58: void clcd_write(unsigned char byte, unsigned char mode)
-[v _clcd_write `(v ~T0 @X0 1 ef2`uc`uc ]
-"59
-[; ;clcd.c: 59: {
-{
-[e :U _clcd_write ]
-"58
-[; ;clcd.c: 58: void clcd_write(unsigned char byte, unsigned char mode)
-[v _byte `uc ~T0 @X0 1 r1 ]
-[v _mode `uc ~T0 @X0 1 r2 ]
-"59
-[; ;clcd.c: 59: {
-[f ]
-"60
-[; ;clcd.c: 60:     RE2 = (__bit)mode;
-[e = _RE2 -> -> _mode `b `b ]
-"62
-[; ;clcd.c: 62:     PORTD = byte & 0xF0;
-[e = _PORTD -> & -> _byte `i -> 240 `i `uc ]
-"63
-[; ;clcd.c: 63:     RE1 = 1;
-[e = _RE1 -> -> 1 `i `b ]
-"64
-[; ;clcd.c: 64:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"65
-[; ;clcd.c: 65:     RE1 = 0;
-[e = _RE1 -> -> 0 `i `b ]
-"67
-[; ;clcd.c: 67:     PORTD = (unsigned char)((byte & 0x0F) << 4);
-[e = _PORTD -> << & -> _byte `i -> 15 `i -> 4 `i `uc ]
-"68
-[; ;clcd.c: 68:     RE1 = 1;
-[e = _RE1 -> -> 1 `i `b ]
-"69
-[; ;clcd.c: 69:     _delay((unsigned long)((100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"70
-[; ;clcd.c: 70:     RE1 = 0;
-[e = _RE1 -> -> 0 `i `b ]
-"72
-[; ;clcd.c: 72:     _delay((unsigned long)((4100)*(20000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 4100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"73
-[; ;clcd.c: 73: }
-[e :UE 106 ]
+[e :U 101 ]
+"31
+[; ;isr_1.c: 31:         TMR2IF = 0;
+[e = _TMR2IF -> -> 0 `i `b ]
+"32
+[; ;isr_1.c: 32:     }
+}
+[e :U 100 ]
+"33
+[; ;isr_1.c: 33: }
+[e :UE 99 ]
 }
