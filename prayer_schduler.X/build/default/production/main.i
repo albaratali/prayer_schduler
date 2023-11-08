@@ -1952,7 +1952,6 @@ static void init_config(void) {
 
     PEIE=1;
     GIE=1;
-
 }
 
 void main(void) {
@@ -2039,7 +2038,6 @@ void set_time(unsigned char key,int reset_flag)
             hour=hour*10 +key;
             blink_pos=2;
         }
-
     }
     else if (key=='*')
     {
@@ -2083,9 +2081,6 @@ void set_time(unsigned char key,int reset_flag)
 
         clcd_putch(sec/10 + '0',(0xC0 + 12));
         clcd_putch(sec%10 + '0',(0xC0 + 13));
-
-
-
 
     }
 

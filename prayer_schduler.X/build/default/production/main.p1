@@ -244,106 +244,106 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "14
-[; ;main.c: 14: 
+[; ;main.c: 14: }
 [v _operation_flag `i ~T0 @X0 1 e ]
 [i _operation_flag
 -> 1 `i
 ]
 "16
-[; ;main.c: 16: 
+[; ;main.c: 16: void main(void) {
 [v _init_config `(v ~T0 @X0 1 sf ]
 {
 [e :U _init_config ]
 [f ]
 "18
-[; ;main.c: 18:     init_config();
+[; ;main.c: 18:     unsigned char key;
 [e ( _init_clcd ..  ]
 "20
-[; ;main.c: 20:     static int reset_flag=0x05;
+[; ;main.c: 20: 
 [e ( _init_matrix_keypad ..  ]
 "23
-[; ;main.c: 23:     while (1) {
+[; ;main.c: 23: 
 [e ( _init_timer2 ..  ]
 "25
-[; ;main.c: 25:         key=read_matrix_keypad(1);
+[; ;main.c: 25: 
 [e = _PEIE -> -> 1 `i `b ]
 "26
-[; ;main.c: 26: 
+[; ;main.c: 26:         switch(operation_flag)
 [e = _GIE -> -> 1 `i `b ]
-"28
-[; ;main.c: 28:         {
+"27
+[; ;main.c: 27:         {
 [e :UE 99 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"30
-[; ;main.c: 30:                 turn_on();
+"29
+[; ;main.c: 29:                 turn_on();
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"31
-[; ;main.c: 31:                 clear_screen();
+"30
+[; ;main.c: 30:                 clear_screen();
 [e ( _init_config ..  ]
-"32
-[; ;main.c: 32:                 operation_flag= 0x02;
+"31
+[; ;main.c: 31:                 operation_flag= 0x02;
 [v _key `uc ~T0 @X0 1 a ]
-"33
-[; ;main.c: 33:                 break;
+"32
+[; ;main.c: 32:                 break;
 [v F1035 `i ~T0 @X0 1 s reset_flag ]
 [i F1035
 -> 5 `i
 ]
-"36
-[; ;main.c: 36:                 reset_flag=0x06;
+"35
+[; ;main.c: 35:                 reset_flag=0x06;
 [e :U 102 ]
 {
-"38
-[; ;main.c: 38:             case 0x04:
+"37
+[; ;main.c: 37:             case 0x04:
 [e = _key ( _read_matrix_keypad (1 -> -> 1 `i `uc ]
-"40
-[; ;main.c: 40:                 clock_screen();
+"39
+[; ;main.c: 39:                 clock_screen();
 [e $U 105  ]
-"41
-[; ;main.c: 41:                 break;
+"40
+[; ;main.c: 40:                 break;
 {
-"42
-[; ;main.c: 42:         }
+"41
+[; ;main.c: 41:         }
 [e :U 106 ]
+"42
+[; ;main.c: 42: 
+[e ( _turn_on ..  ]
 "43
 [; ;main.c: 43: 
-[e ( _turn_on ..  ]
-"44
-[; ;main.c: 44: 
 [e ( _clear_screen ..  ]
-"45
-[; ;main.c: 45:     }
+"44
+[; ;main.c: 44:     }
 [e = _operation_flag -> 2 `i ]
+"45
+[; ;main.c: 45: 
+[e $U 104  ]
 "46
-[; ;main.c: 46: 
-[e $U 104  ]
-"47
-[; ;main.c: 47: }
+[; ;main.c: 46: }
 [e :U 107 ]
-"48
-[; ;main.c: 48: 
+"47
+[; ;main.c: 47: 
 [e ( _set_time (2 , _key F1035 ]
-"49
-[; ;main.c: 49: void clock_screen (void)
+"48
+[; ;main.c: 48: void clock_screen (void)
 [e = F1035 -> 6 `i ]
+"49
+[; ;main.c: 49: {
+[e $U 104  ]
 "50
-[; ;main.c: 50: {
-[e $U 104  ]
-"51
-[; ;main.c: 51:     clcd_print("TIME:",(0xC0 + 0));
+[; ;main.c: 50:     clcd_print("TIME:",(0xC0 + 0));
 [e :U 108 ]
-"53
-[; ;main.c: 53:     clcd_putch(hour/10 + '0',(0xC0 + 6));
+"52
+[; ;main.c: 52:     clcd_putch(hour/10 + '0',(0xC0 + 6));
 [e ( _clock_screen ..  ]
-"54
-[; ;main.c: 54:     clcd_putch(hour%10 + '0',(0xC0 + 7));
+"53
+[; ;main.c: 53:     clcd_putch(hour%10 + '0',(0xC0 + 7));
 [e $U 104  ]
-"55
-[; ;main.c: 55:     clcd_putch(':',(0xC0 + 8));
+"54
+[; ;main.c: 54:     clcd_putch(':',(0xC0 + 8));
 }
 [e $U 104  ]
 [e :U 105 ]
@@ -352,337 +352,337 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 108
  104 ]
 [e :U 104 ]
-"58
-[; ;main.c: 58:     clcd_putch(min%10 + '0',(0xC0 + 10));
+"57
+[; ;main.c: 57:     clcd_putch(min%10 + '0',(0xC0 + 10));
 }
 [e :U 101 ]
 [e $U 102  ]
 [e :U 103 ]
-"60
-[; ;main.c: 60: 
+"59
+[; ;main.c: 59: 
 [e :UE 100 ]
 }
-"62
-[; ;main.c: 62:     clcd_putch(sec%10 + '0',(0xC0 + 13));
+"61
+[; ;main.c: 61:     clcd_putch(sec%10 + '0',(0xC0 + 13));
 [v _clock_screen `(v ~T0 @X0 1 ef ]
-"63
-[; ;main.c: 63: 
+"62
+[; ;main.c: 62: 
 {
 [e :U _clock_screen ]
 [f ]
-"64
-[; ;main.c: 64: }
+"63
+[; ;main.c: 63: }
 [e ( _clcd_print (2 , :s 1C -> + -> 192 `i -> 0 `i `uc ]
-"66
-[; ;main.c: 66: {
+"65
+[; ;main.c: 65: {
 [e ( _clcd_putch (2 , -> + -> / -> _hour `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 6 `i `uc ]
-"67
-[; ;main.c: 67:     static unsigned char key_count,blink_pos,blink,wait;
+"66
+[; ;main.c: 66:     static unsigned char key_count,blink_pos,blink,wait;
 [e ( _clcd_putch (2 , -> + -> % -> _hour `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
-"68
-[; ;main.c: 68: 
+"67
+[; ;main.c: 67: 
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 8 `i `uc ]
-"70
-[; ;main.c: 70:     {
+"69
+[; ;main.c: 69:     {
 [e ( _clcd_putch (2 , -> + -> / -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 9 `i `uc ]
-"71
-[; ;main.c: 71:     key_count=0;
+"70
+[; ;main.c: 70:     key_count=0;
 [e ( _clcd_putch (2 , -> + -> % -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
-"72
-[; ;main.c: 72:     sec=0;
+"71
+[; ;main.c: 71:     sec=0;
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 11 `i `uc ]
-"74
-[; ;main.c: 74:     hour=0;
+"73
+[; ;main.c: 73:     hour=0;
 [e ( _clcd_putch (2 , -> + -> / -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 12 `i `uc ]
-"75
-[; ;main.c: 75:     blink_pos=0;
+"74
+[; ;main.c: 74:     blink_pos=0;
 [e ( _clcd_putch (2 , -> + -> % -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 13 `i `uc ]
-"77
-[; ;main.c: 77:     key=0xFF;
+"76
+[; ;main.c: 76:     key=0xFF;
 [e :UE 109 ]
 }
-"78
-[; ;main.c: 78:     clcd_print("SET TIME(H:M:S)",(0x80 + 0));
+"77
+[; ;main.c: 77:     clcd_print("SET TIME(H:M:S)",(0x80 + 0));
 [v _set_time `(v ~T0 @X0 1 ef2`uc`i ]
-"79
-[; ;main.c: 79:     clcd_print("TIME:",(0xC0 + 0));
+"78
+[; ;main.c: 78:     clcd_print("TIME:",(0xC0 + 0));
 {
 [e :U _set_time ]
-"78
-[; ;main.c: 78:     clcd_print("SET TIME(H:M:S)",(0x80 + 0));
+"77
+[; ;main.c: 77:     clcd_print("SET TIME(H:M:S)",(0x80 + 0));
 [v _key `uc ~T0 @X0 1 r1 ]
 [v _reset_flag `i ~T0 @X0 1 r2 ]
-"79
-[; ;main.c: 79:     clcd_print("TIME:",(0xC0 + 0));
+"78
+[; ;main.c: 78:     clcd_print("TIME:",(0xC0 + 0));
 [f ]
-"80
-[; ;main.c: 80:     clcd_print("*:CLEAR  #:ENTER",(0xD0 + 0));
+"79
+[; ;main.c: 79:     clcd_print("*:CLEAR  #:ENTER",(0xD0 + 0));
 [v F1040 `uc ~T0 @X0 1 s key_count ]
 [v F1041 `uc ~T0 @X0 1 s blink_pos ]
 [v F1042 `uc ~T0 @X0 1 s blink ]
 [v F1043 `uc ~T0 @X0 1 s wait ]
-"82
-[; ;main.c: 82: 
+"81
+[; ;main.c: 81: 
 [e $ ! == _reset_flag -> 5 `i 111  ]
-"83
-[; ;main.c: 83:     if((key!= '*') && (key != '#') && (key != 0xFF))
+"82
+[; ;main.c: 82:     if((key!= '*') && (key != '#') && (key != 0xFF))
 {
-"84
-[; ;main.c: 84:     {
+"83
+[; ;main.c: 83:     {
 [e = F1040 -> -> 0 `i `uc ]
-"85
-[; ;main.c: 85:         key_count++;
+"84
+[; ;main.c: 84:         key_count++;
 [e = _sec -> -> 0 `i `uc ]
-"86
-[; ;main.c: 86:         if (key_count <= 2)
+"85
+[; ;main.c: 85:         if (key_count <= 2)
 [e = _min -> -> 0 `i `uc ]
-"87
-[; ;main.c: 87:         {
+"86
+[; ;main.c: 86:         {
 [e = _hour -> -> 0 `i `uc ]
-"88
-[; ;main.c: 88:             sec = sec*10 + key;
+"87
+[; ;main.c: 87:             sec = sec*10 + key;
 [e = F1041 -> -> 0 `i `uc ]
-"89
-[; ;main.c: 89:             blink_pos = 0;
+"88
+[; ;main.c: 88:             blink_pos = 0;
 [e = F1042 -> -> 0 `i `uc ]
-"90
-[; ;main.c: 90:         }
+"89
+[; ;main.c: 89:         }
 [e = _key -> -> 255 `i `uc ]
-"91
-[; ;main.c: 91:         else if ((key_count>2) && (key_count<=4))
+"90
+[; ;main.c: 90:         else if ((key_count>2) && (key_count<=4))
 [e ( _clcd_print (2 , :s 2C -> + -> 128 `i -> 0 `i `uc ]
-"92
-[; ;main.c: 92:         {
+"91
+[; ;main.c: 91:         {
 [e ( _clcd_print (2 , :s 3C -> + -> 192 `i -> 0 `i `uc ]
-"93
-[; ;main.c: 93:             min=min*10 +key;
+"92
+[; ;main.c: 92:             min=min*10 +key;
 [e ( _clcd_print (2 , :s 4C -> + -> 208 `i -> 0 `i `uc ]
-"94
-[; ;main.c: 94:             blink_pos=1;
+"93
+[; ;main.c: 93:             blink_pos=1;
 }
 [e :U 111 ]
-"96
-[; ;main.c: 96:         else if ((key_count>4) && (key_count<=6))
+"95
+[; ;main.c: 95:         else if ((key_count>4) && (key_count<=6))
 [e $ ! && && != -> _key `ui -> 42 `ui != -> _key `ui -> 35 `ui != -> _key `i -> 255 `i 112  ]
+"96
+[; ;main.c: 96:         {
+{
 "97
-[; ;main.c: 97:         {
-{
-"98
-[; ;main.c: 98:             hour=hour*10 +key;
+[; ;main.c: 97:             hour=hour*10 +key;
 [e ++ F1040 -> -> 1 `i `uc ]
-"99
-[; ;main.c: 99:             blink_pos=2;
+"98
+[; ;main.c: 98:             blink_pos=2;
 [e $ ! <= -> F1040 `i -> 2 `i 113  ]
-"100
-[; ;main.c: 100:         }
+"99
+[; ;main.c: 99:         }
 {
-"101
-[; ;main.c: 101: 
+"100
+[; ;main.c: 100:     }
 [e = _sec -> + * -> _sec `i -> 10 `i -> _key `i `uc ]
-"102
-[; ;main.c: 102:     }
+"101
+[; ;main.c: 101:     else if (key=='*')
 [e = F1041 -> -> 0 `i `uc ]
-"103
-[; ;main.c: 103:     else if (key=='*')
+"102
+[; ;main.c: 102:     {
 }
 [e $U 114  ]
-"104
-[; ;main.c: 104:     {
+"103
+[; ;main.c: 103:         if(blink_pos==0)
 [e :U 113 ]
 [e $ ! && > -> F1040 `i -> 2 `i <= -> F1040 `i -> 4 `i 115  ]
-"105
-[; ;main.c: 105:         if(blink_pos==0)
+"104
+[; ;main.c: 104:         {
 {
-"106
-[; ;main.c: 106:         {
+"105
+[; ;main.c: 105:             sec=0;
 [e = _min -> + * -> _min `i -> 10 `i -> _key `i `uc ]
-"107
-[; ;main.c: 107:             sec=0;
+"106
+[; ;main.c: 106:             key_count=0;
 [e = F1041 -> -> 1 `i `uc ]
-"108
-[; ;main.c: 108:             key_count=0;
+"107
+[; ;main.c: 107:         }
 }
 [e $U 116  ]
-"109
-[; ;main.c: 109:         }
+"108
+[; ;main.c: 108:         else if (blink_pos==1)
 [e :U 115 ]
 [e $ ! && > -> F1040 `i -> 4 `i <= -> F1040 `i -> 6 `i 117  ]
-"110
-[; ;main.c: 110:         else if (blink_pos==1)
+"109
+[; ;main.c: 109:         {
 {
-"111
-[; ;main.c: 111:         {
+"110
+[; ;main.c: 110:             min=0;
 [e = _hour -> + * -> _hour `i -> 10 `i -> _key `i `uc ]
-"112
-[; ;main.c: 112:             min=0;
+"111
+[; ;main.c: 111:             key_count=2;
 [e = F1041 -> -> 2 `i `uc ]
-"113
-[; ;main.c: 113:             key_count=2;
+"112
+[; ;main.c: 112:         }
 }
 [e :U 117 ]
 [e :U 116 ]
 [e :U 114 ]
-"115
-[; ;main.c: 115:         else if (blink_pos==2)
+"113
+[; ;main.c: 113:         else if (blink_pos==2)
 }
 [e $U 118  ]
-"116
-[; ;main.c: 116:         {
+"114
+[; ;main.c: 114:         {
 [e :U 112 ]
 [e $ ! == -> _key `ui -> 42 `ui 119  ]
+"115
+[; ;main.c: 115:             hour=0;
+{
+"116
+[; ;main.c: 116:             key_count=4;
+[e $ ! == -> F1041 `i -> 0 `i 120  ]
 "117
-[; ;main.c: 117:             hour=0;
+[; ;main.c: 117:         }
 {
 "118
-[; ;main.c: 118:             key_count=4;
-[e $ ! == -> F1041 `i -> 0 `i 120  ]
-"119
-[; ;main.c: 119:         }
-{
-"120
-[; ;main.c: 120:     }
+[; ;main.c: 118:     }
 [e = _sec -> -> 0 `i `uc ]
-"121
-[; ;main.c: 121:     else if (key=='#')
+"119
+[; ;main.c: 119:     else if (key=='#')
 [e = F1040 -> -> 0 `i `uc ]
-"122
-[; ;main.c: 122:     {
+"120
+[; ;main.c: 120:     {
 }
 [e $U 121  ]
-"123
-[; ;main.c: 123:         clear_screen();
+"121
+[; ;main.c: 121:         clear_screen();
 [e :U 120 ]
 [e $ ! == -> F1041 `i -> 1 `i 122  ]
-"124
-[; ;main.c: 124:         operation_flag = 0x04;
+"122
+[; ;main.c: 122:         operation_flag = 0x04;
 {
-"125
-[; ;main.c: 125:         TMR2ON =1;
+"123
+[; ;main.c: 123:         TMR2ON =1;
 [e = _min -> -> 0 `i `uc ]
-"126
-[; ;main.c: 126:     }
+"124
+[; ;main.c: 124:     }
 [e = F1040 -> -> 2 `i `uc ]
-"127
-[; ;main.c: 127: 
+"125
+[; ;main.c: 125: 
 }
 [e $U 123  ]
-"128
-[; ;main.c: 128:     if(wait++ ==15)
+"126
+[; ;main.c: 126:     if(wait++ ==15)
 [e :U 122 ]
 [e $ ! == -> F1041 `i -> 2 `i 124  ]
-"129
-[; ;main.c: 129:     {
+"127
+[; ;main.c: 127:     {
 {
-"130
-[; ;main.c: 130:         wait=0;
+"128
+[; ;main.c: 128:         wait=0;
 [e = _hour -> -> 0 `i `uc ]
-"131
-[; ;main.c: 131:         blink =! blink;
+"129
+[; ;main.c: 129:         blink =! blink;
 [e = F1040 -> -> 4 `i `uc ]
-"132
-[; ;main.c: 132: 
+"130
+[; ;main.c: 130: 
 }
 [e :U 124 ]
 [e :U 123 ]
 [e :U 121 ]
-"133
-[; ;main.c: 133: 
+"131
+[; ;main.c: 131: 
 }
 [e $U 125  ]
-"134
-[; ;main.c: 134:         clcd_putch(hour/10 + '0',(0xC0 + 6));
+"132
+[; ;main.c: 132:         clcd_putch(hour/10 + '0',(0xC0 + 6));
 [e :U 119 ]
 [e $ ! == -> _key `ui -> 35 `ui 126  ]
-"135
-[; ;main.c: 135:         clcd_putch(hour%10 + '0',(0xC0 + 7));
+"133
+[; ;main.c: 133:         clcd_putch(hour%10 + '0',(0xC0 + 7));
 {
-"136
-[; ;main.c: 136:         clcd_putch(':',(0xC0 + 8));
+"134
+[; ;main.c: 134:         clcd_putch(':',(0xC0 + 8));
 [e ( _clear_screen ..  ]
-"137
-[; ;main.c: 137: 
+"135
+[; ;main.c: 135: 
 [e = _operation_flag -> 4 `i ]
-"138
-[; ;main.c: 138: 
+"136
+[; ;main.c: 136: 
 [e = _TMR2ON -> -> 1 `i `b ]
-"139
-[; ;main.c: 139:         clcd_putch(min/10 + '0',(0xC0 + 9));
+"137
+[; ;main.c: 137:         clcd_putch(min/10 + '0',(0xC0 + 9));
 }
 [e :U 126 ]
 [e :U 125 ]
 [e :U 118 ]
-"141
-[; ;main.c: 141:         clcd_putch(':',(0xC0 + 11));
+"139
+[; ;main.c: 139:         clcd_putch(':',(0xC0 + 11));
 [e $ ! == -> ++ F1043 -> -> 1 `i `uc `i -> 15 `i 127  ]
-"142
-[; ;main.c: 142: 
+"140
+[; ;main.c: 140: 
 {
-"143
-[; ;main.c: 143:         clcd_putch(sec/10 + '0',(0xC0 + 12));
+"141
+[; ;main.c: 141:         clcd_putch(sec/10 + '0',(0xC0 + 12));
 [e = F1043 -> -> 0 `i `uc ]
-"144
-[; ;main.c: 144:         clcd_putch(sec%10 + '0',(0xC0 + 13));
+"142
+[; ;main.c: 142:         clcd_putch(sec%10 + '0',(0xC0 + 13));
 [e = F1042 -> -> ! != -> F1042 `i -> 0 `i `i `uc ]
-"147
-[; ;main.c: 147: 
+"145
+[; ;main.c: 145: 
 [e ( _clcd_putch (2 , -> + -> / -> _hour `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 6 `i `uc ]
-"148
-[; ;main.c: 148: 
+"146
+[; ;main.c: 146:     if(blink)
 [e ( _clcd_putch (2 , -> + -> % -> _hour `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 7 `i `uc ]
-"149
-[; ;main.c: 149:     }
+"147
+[; ;main.c: 147:     {
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 8 `i `uc ]
-"152
-[; ;main.c: 152:     {
+"150
+[; ;main.c: 150:             case 2:
 [e ( _clcd_putch (2 , -> + -> / -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 9 `i `uc ]
-"153
-[; ;main.c: 153:         switch(blink_pos)
+"151
+[; ;main.c: 151:                 clcd_print("  ",(0xC0 + 6));
 [e ( _clcd_putch (2 , -> + -> % -> _min `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 10 `i `uc ]
-"154
-[; ;main.c: 154:         {
+"152
+[; ;main.c: 152:             case 1:
 [e ( _clcd_putch (2 , -> -> 58 `ui `uc -> + -> 192 `i -> 11 `i `uc ]
-"156
-[; ;main.c: 156:                 clcd_print("  ",(0xC0 + 6));
+"154
+[; ;main.c: 154:             case 0:
 [e ( _clcd_putch (2 , -> + -> / -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 12 `i `uc ]
-"157
-[; ;main.c: 157:             case 1:
+"155
+[; ;main.c: 155:                 clcd_print("  ",(0xC0 + 12));
 [e ( _clcd_putch (2 , -> + -> % -> _sec `i -> 10 `i `ui -> 48 `ui `uc -> + -> 192 `i -> 13 `i `uc ]
-"162
-[; ;main.c: 162:     }
+"157
+[; ;main.c: 157:     }
 }
 [e :U 127 ]
-"164
-[; ;main.c: 164: }
+"159
+[; ;main.c: 159: }
 [e $ ! != -> F1042 `i -> 0 `i 128  ]
-"165
-[; ;main.c: 165: 
+"160
+[; ;main.c: 160: 
 {
-"166
-[; ;main.c: 166: void clear_screen(void)
+"161
+[; ;main.c: 161: void clear_screen(void)
 [e $U 130  ]
-"167
-[; ;main.c: 167: {
+"162
+[; ;main.c: 162: {
 {
-"168
-[; ;main.c: 168:     clcd_write(0x01, 0);
+"163
+[; ;main.c: 163:     clcd_write(0x01, 0);
 [e :U 131 ]
-"169
-[; ;main.c: 169:     _delay((unsigned long)((500)*(20000000/4000000.0)));
+"164
+[; ;main.c: 164:     _delay((unsigned long)((500)*(20000000/4000000.0)));
 [e ( _clcd_print (2 , :s 5C -> + -> 192 `i -> 6 `i `uc ]
-"170
-[; ;main.c: 170: }
+"165
+[; ;main.c: 165: }
 [e :U 132 ]
-"171
-[; ;main.c: 171: 
+"166
+[; ;main.c: 166: 
 [e ( _clcd_print (2 , :s 6C -> + -> 192 `i -> 9 `i `uc ]
-"172
-[; ;main.c: 172: 
+"167
+[; ;main.c: 167: 
 [e :U 133 ]
-"173
-[; ;main.c: 173: void turn_on(void)
+"168
+[; ;main.c: 168: void turn_on(void)
 [e ( _clcd_print (2 , :s 7C -> + -> 192 `i -> 12 `i `uc ]
-"174
-[; ;main.c: 174: {
+"169
+[; ;main.c: 169: {
 }
 [e $U 129  ]
 [e :U 130 ]
@@ -691,86 +691,86 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 0 `i 133
  129 ]
 [e :U 129 ]
-"175
-[; ;main.c: 175:     unsigned char i;
+"170
+[; ;main.c: 170:     unsigned char i;
 }
 [e :U 128 ]
-"177
-[; ;main.c: 177:     for(i=0;i<16;i++)
+"172
+[; ;main.c: 172:     for(i=0;i<16;i++)
 [e :UE 110 ]
 }
-"179
-[; ;main.c: 179:         clcd_putch(0xFF,(0x80 + i));
+"174
+[; ;main.c: 174:         clcd_putch(0xFF,(0x80 + i));
 [v _clear_screen `(v ~T0 @X0 1 ef ]
-"180
-[; ;main.c: 180:         _delay((unsigned long)((50)*(20000000/4000.0)));
+"175
+[; ;main.c: 175:         _delay((unsigned long)((50)*(20000000/4000.0)));
 {
 [e :U _clear_screen ]
 [f ]
-"181
-[; ;main.c: 181:     }
+"176
+[; ;main.c: 176:     }
 [e ( _clcd_write (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"182
-[; ;main.c: 182: 
+"177
+[; ;main.c: 177: 
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-"183
-[; ;main.c: 183:     clcd_print("     TURN ON   ",(0xC0 + 0));
+"178
+[; ;main.c: 178:     clcd_print("     TURN ON   ",(0xC0 + 0));
 [e :UE 134 ]
 }
-"186
-[; ;main.c: 186:     {
+"181
+[; ;main.c: 181:     {
 [v _turn_on `(v ~T0 @X0 1 ef ]
-"187
-[; ;main.c: 187:         clcd_putch(0xFF,(0xD0 + i));
+"182
+[; ;main.c: 182:         clcd_putch(0xFF,(0xD0 + i));
 {
 [e :U _turn_on ]
 [f ]
-"188
-[; ;main.c: 188:         _delay((unsigned long)((50)*(20000000/4000.0)));
+"183
+[; ;main.c: 183:         _delay((unsigned long)((50)*(20000000/4000.0)));
 [v _i `uc ~T0 @X0 1 a ]
-"190
-[; ;main.c: 190:     _delay((unsigned long)((100)*(20000000/4000.0)));
+"185
+[; ;main.c: 185:     _delay((unsigned long)((100)*(20000000/4000.0)));
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 16 `i 136  ]
 [e $U 137  ]
 [e :U 136 ]
-"191
-[; ;main.c: 191: }
+"186
+[; ;main.c: 186: }
 {
-"192
+"187
 [e ( _clcd_putch (2 , -> -> 255 `i `uc -> + -> 128 `i -> _i `i `uc ]
-"193
+"188
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"194
+"189
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 16 `i 136  ]
 [e :U 137 ]
 }
-"196
+"191
 [e ( _clcd_print (2 , :s 8C -> + -> 192 `i -> 0 `i `uc ]
-"198
+"193
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 16 `i 139  ]
 [e $U 140  ]
 [e :U 139 ]
-"199
+"194
 {
-"200
+"195
 [e ( _clcd_putch (2 , -> -> 255 `i `uc -> + -> 208 `i -> _i `i `uc ]
-"201
+"196
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"202
+"197
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 16 `i 139  ]
 [e :U 140 ]
 }
-"203
+"198
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"204
+"199
 [e :UE 135 ]
 }
 [a 4C 42 58 67 76 69 65 82 32 32 35 58 69 78 84 69 82 0 ]
