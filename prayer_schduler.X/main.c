@@ -111,7 +111,7 @@ void set_time(unsigned char key,int reset_flag)
             blink_pos=2;
         }    
     }
-    else if (key=='*')
+    else if (key=='*')//clear
     {
         if(blink_pos==0)
         {
@@ -129,14 +129,14 @@ void set_time(unsigned char key,int reset_flag)
             key_count=4;
         }
     }
-    else if (key=='#')
+    else if (key=='#')//Enter
     {
         clear_screen();
         operation_flag = CLOCK_SCREEN;
         TMR2ON =1;
     }
     
-    if(wait++ ==15)
+    if(wait++ ==15)//blink
     {
         wait=0;
         blink =! blink;
